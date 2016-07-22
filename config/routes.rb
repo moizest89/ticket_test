@@ -2,8 +2,14 @@ Rails.application.routes.draw do
   resources :items
   resources :categories
   devise_for :users
+  scope "/admin" do
+    resources :users
+  end
+  
   resources :users
   resources :roles
+
+
 
 
   # The priority is based upon order of creation: first created -> highest priority.

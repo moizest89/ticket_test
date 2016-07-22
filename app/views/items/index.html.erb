@@ -5,9 +5,11 @@
 <table>
   <thead>
     <tr>
-      <th>Description</th>
       <th>Category</th>
+      <th>Description</th>
+      <% if can? :all, @items %>
       <th>User</th>
+      <% end -%>
       <th>Status</th>
       <th colspan="3"></th>
     </tr>
@@ -16,13 +18,17 @@
   <tbody>
     <% @items.each do |item| %>
       <tr>
-        <td><%= item.description %></td>
         <td><%= item.category.name rescue nil  %></td>
+        <td><%= item.description %></td>
+        <% if can? :all, @items %>
         <td><%= item.user.name rescue nil  %></td>
+        <% end -%>
         <td><%= status_label(item.status) %></td>
         <td><%= link_to 'Show', item %></td>
-        <td><%= link_to 'Edit', edit_item_path(item) %></td>
-        <td><%= link_to 'Destroy', item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% if can? :all, @items %>
+          <td><%= link_to 'Edit', edit_item_path(item) %></td>
+          <td><%= link_to 'Destroy', item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end -%>
       </tr>
     <% end %>
   </tbody>
@@ -30,4 +36,8 @@
 
 <br>
 
-<%= link_to 'New Item', new_item_path %>
+
+<% if can? :all, @items %>
+  <%= link_to 'New Item', new_item_path %>
+<% end %>
+

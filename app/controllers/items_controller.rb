@@ -7,7 +7,12 @@ class ItemsController < ApplicationController
   # GET /items
   # GET /items.json
   def index
-    @items = Item.all
+    if can? :all, @items
+      @items = Item.all
+    elsif  
+      @items = Item.where(:user_id => current_user.id)
+    end
+    
   end
 
   # GET /items/1

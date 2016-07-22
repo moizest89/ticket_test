@@ -13,8 +13,8 @@ class Ability
     def initialize(user)
         if user.admin?
             can :manage, :all
-        elsif user.technical?
-            can :read, :Item
+        else
+            can :read, :all
         end
     end
     # The first argument to `can` is the action you are giving the user
