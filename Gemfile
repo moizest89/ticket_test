@@ -34,6 +34,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'foundation-rails'
 gem "devise"
+gem 'cancancan', '~> 1.10'
 
 
 group :development, :test do
