@@ -1,5 +1,5 @@
 
-<h1>Listing Items</h1>
+<h1>Listing <%= Item.model_name.human.pluralize%></h1>
 
 <table>
   <thead>
@@ -37,6 +37,6 @@
 
 
 <% if can? :all, @items %>
-  <%= link_to 'New Item', new_item_path %>
+  <%= link_to "New #{Item.model_name.human}", new_item_path , :class => "button small" %>
 <% end %>
 

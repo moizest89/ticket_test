@@ -20,4 +20,10 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
+  activerecord:
+    models:
+      item: 
+        one: Ticket
+        other: Tickets
   hello: "Hello world"
+  web_site_name: "Web site name" 
