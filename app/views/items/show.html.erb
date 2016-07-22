@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @item.description %>
+</p>
+
+<p>
+  <strong>Category:</strong>
+  <%= @item.category.name rescue nil %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @item.user.name rescue nil %>
+</p>
+
+<p>
+	<strong>status:</strong>
+	<%= status_label(@item.status) %>
+</p>
+
+<%= link_to 'Edit', edit_item_path(@item) %> |
+<%= link_to 'Back', items_path %>
