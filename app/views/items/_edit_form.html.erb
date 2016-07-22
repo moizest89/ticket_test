@@ -1,0 +1,69 @@
+<%= form_for(@item) do |f| %>
+  <% if @item.errors.any? %>
+    <div class="row">
+    <div id="error_explanation">
+      <h2><%= pluralize(@item.errors.count, "error") %> prohibited this item from being saved:</h2>
+
+      <ul>
+      <% @item.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field row">
+    <div class="large-12 columns">
+    <%= f.label :category_id %>
+    <%#= f.text_field :category_id ,:readonly => true%>
+    <input type="text" name="" value="<%= @item.category.name%>" readonly="true">
+    <%= f.hidden_field :category_id %>
+    </div>
+  </div>
+
+  <div class="field row">
+    <div class="large-12 columns">
+    <%= f.label :description %>
+    <%= f.text_area :description ,:readonly => true%>
+    <%#= @item.description%>
+    </div>
+  </div>
+  
+  <div class="field row">
+    <div class="large-12 columns">
+    <%= f.label :user_id %>
+    <%= f.hidden_field :user_id %>
+    <%# = @item.user.name%>
+    <input type="text" name="" value="<%= @item.user.name%>" readonly="true">
+  </div>
+  </div>
+  <div class="field row">
+    <div class="large-12 columns">
+    <%= f.label :observations %>
+    <%= f.text_area :observations %>
+    </div>
+  </div>
+  <div class="field row">
+    <div class="large-12 columns">
+    <label>Status</label>
+    </div>
+  </div>
+  <div class="field row">
+    <div class="large-12 columns">
+      <div class="switch">
+        <%= f.check_box :status %>
+        <%= f.label :status %>
+      </div>   
+     
+    </div>
+  </div>
+  <br><br>
+
+
+
+
+  <div class="actions">
+    <%= f.submit "Update #{Item.model_name.human}", :class => "button small"%>
+  </div>
+
+<% end %>

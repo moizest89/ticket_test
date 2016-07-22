@@ -36,7 +36,7 @@
 <% if can? :all, @items %>
 	<%= link_to 'Edit', edit_item_path(@item) , :class => "button small"%> |
 <% elsif %>
-	<%= link_to 'Edit 2', catch_item_path(@item) , :class => "button small"%> |
+	<%= link_to 'Update', catch_item_path(@item) , :class => "button small"%> |
 <% end -%>
 
 <%= link_to 'Back', items_path , :class => "button small"%>
