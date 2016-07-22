@@ -1,24 +1,33 @@
-<p id="notice"><%= notice %></p>
 
-<p>
+
+<br>
+<br>
+<br>
+<br>
+
+<p class="panel">
+
+<strong class="hide-for-small-only">
   <strong>Description:</strong>
   <%= @item.description %>
-</p>
+</strong>
 
-<p>
+<strong class="hide-for-small-only">
   <strong>Category:</strong>
   <%= @item.category.name rescue nil %>
-</p>
+</strong>
 
-<p>
+<strong class="hide-for-small-only">
   <strong>User:</strong>
   <%= @item.user.name rescue nil %>
-</p>
+</strong>
 
-<p>
+<strong class="hide-for-small-only">
 	<strong>status:</strong>
 	<%= status_label(@item.status) %>
-</p>
+</strong>
+<br>
 
-<%= link_to 'Edit', edit_item_path(@item) %> |
-<%= link_to 'Back', items_path %>
+<%= link_to 'Edit', edit_item_path(@item) , :class => "button small"%> |
+<%= link_to 'Back', items_path , :class => "button small"%>
+</p>
