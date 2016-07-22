@@ -3,6 +3,7 @@ class ItemsController < ApplicationController
   load_and_authorize_resource
 
   #before_action :set_item, only: [:show, :edit, :update, :destroy]
+  before_action :user_by_id 
 
   # GET /items
   # GET /items.json
@@ -23,7 +24,7 @@ class ItemsController < ApplicationController
   # GET /items/new
   def new
     #@item = Item.new
-    @users = User.where(:role_id => 2)
+    #@users = User.where(:role_id => 2)
   end
 
   # GET /items/1/edit
@@ -33,6 +34,7 @@ class ItemsController < ApplicationController
   # POST /items
   # POST /items.json
   def create
+    #@users = User.where(:role_id => 2)
     #@item = Item.new(item_params)
 
     respond_to do |format|
@@ -75,6 +77,10 @@ class ItemsController < ApplicationController
     # def set_item
     #   @item = Item.find(params[:id])
     # end
+
+    def user_by_id
+      @users = User.where(:role_id => 2)
+    end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def item_params
