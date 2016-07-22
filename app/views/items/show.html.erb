@@ -23,11 +23,21 @@
 </strong>
 
 <strong class="hide-for-small-only">
+	<strong>Observations:</strong>
+	<%= @item.observations %>
+</strong>
+
+<strong class="hide-for-small-only">
 	<strong>status:</strong>
 	<%= status_label(@item.status) %>
 </strong>
 <br>
 
-<%= link_to 'Edit', edit_item_path(@item) , :class => "button small"%> |
+<% if can? :all, @items %>
+	<%= link_to 'Edit', edit_item_path(@item) , :class => "button small"%> |
+<% elsif %>
+	<%= link_to 'Edit 2', catch_item_path(@item) , :class => "button small"%> |
+<% end -%>
+
 <%= link_to 'Back', items_path , :class => "button small"%>
 </p>

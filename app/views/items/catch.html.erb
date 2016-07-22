@@ -1,3 +1,5 @@
+<%#= @item.inspect %>
+
 
 <%= form_for(@item) do |f| %>
   <% if @item.errors.any? %>
@@ -16,31 +18,44 @@
   <div class="field row">
     <div class="large-12 columns">
     <%= f.label :category_id %>
-    <%#= f.text_field :category_id %>
-    <%= collection_select(:item, :category_id, Category.all, :id, :name, {prompt: true}) %>
+    <%= f.hidden_field :category_id %>
+    <%= @item.category.name%>
     </div>
   </div>
-
-  <%#= @users.inspect %>
 
   <div class="field row">
     <div class="large-12 columns">
     <%= f.label :description %>
-    <%= f.text_area :description %>
+    <%= f.hidden_field :description %>
+    <%= @item.description%>
     </div>
   </div>
   
   <div class="field row">
     <div class="large-12 columns">
     <%= f.label :user_id %>
-    <select name="item[user_id]">
-      <% @users.each do |user| %>
-         <option value="<%= user.id %>"><%= user.name %></option>
-      <% end %>
-    </select>
+    <%= f.hidden_field :user_id %>
+    <%= @item.user.name%>
   </div>
   </div>
+  <div class="field row">
+    <div class="large-12 columns">
+    <%= f.label :observations %>
+    <%= f.text_area :observations %>
+    </div>
+  </div>
+  <div class="field row">
+    <div class="large-12 columns">
+    <%= f.label :status %>
+     <%= f.check_box :status %>
+    </div>
+  </div>
+
+
+
+
   <div class="actions">
     <%= f.submit "#{controller.action_name.capitalize} item", :class => "button small"%>
   </div>
+
 <% end %>

@@ -31,6 +31,19 @@ class ItemsController < ApplicationController
   def edit
   end
 
+  def changes
+    @item = Item.last
+    @item.changes
+  end
+
+  def catch
+    @item = Item.find(params[:id])
+  end
+
+  def save_custom_changes
+    
+  end
+
   # POST /items
   # POST /items.json
   def create
@@ -51,13 +64,25 @@ class ItemsController < ApplicationController
   # PATCH/PUT /items/1
   # PATCH/PUT /items/1.json
   def update
-    respond_to do |format|
-      if @item.update(item_params)
-        format.html { redirect_to @item, notice: 'Item was successfully updated.' }
-        format.json { render :show, status: :ok, location: @item }
-      else
-        format.html { render :edit }
-        format.json { render json: @item.errors, status: :unprocessable_entity }
+    puts "update"
+    h = item_params
+    unless current_user.admin?
+      puts "Item params before: " + item_params.inspect
+      h = item_params.slice(:observations, :status)
+    end
+
+    puts "========================================"
+    puts h.inspect
+    puts "========================================"
+    if
+      respond_to do |format|
+        if @item.update(h)
+          format.html { redirect_to @item, notice: 'Item was successfully updated.' }
+          format.json { render :show, status: :ok, location: @item }
+        else
+          format.html { render :edit }
+          format.json { render json: @item.errors, status: :unprocessable_entity }
+        end
       end
     end
   end
@@ -84,6 +109,6 @@ class ItemsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def item_params
-      params.require(:item).permit(:description, :category_id, :user_id)
+      params.require(:item).permit(:description, :category_id, :user_id,:observations, :status)
     end
 end

@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
-  resources :items
+  resources :items do
+    member do 
+      get "catch", as: :catch
+      post "save_custom_changes", as: :save_custom_changes
+    end
+  end
+
   resources :categories
   devise_for :users
   scope "/admin" do
@@ -11,6 +17,7 @@ Rails.application.routes.draw do
 
 
 
+  get "/changes" , to: "items#changes"
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

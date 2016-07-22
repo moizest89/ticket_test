@@ -7,4 +7,8 @@ class Item < ActiveRecord::Base
   validates :user_id, presence: true
 
 
+  def changes
+  	puts "change"
+  end
+
 end

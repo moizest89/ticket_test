@@ -15,6 +15,10 @@ class Ability
             can :manage, :all
         else
             can :read, :all
+            can :changes, Item
+            can :update, Item
+            can :catch, Item
+            can :save_custom_changes, Item
         end
     end
     # The first argument to `can` is the action you are giving the user
